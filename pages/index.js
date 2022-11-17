@@ -12,9 +12,9 @@ export default function Home() {
           <p>Scan</p>
         </a>
 
-        <a href="/manual" className={styles.button}>
+        {/* <a href="/manual" className={styles.button}>
           <p>Manual Lookup</p>
-        </a>
+        </a> */}
       </div>
     </div>
   )
