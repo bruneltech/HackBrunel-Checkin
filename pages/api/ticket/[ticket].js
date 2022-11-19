@@ -6,6 +6,7 @@ const TITO_API_KEY = "secret_YT4DwacTQEHnQZ4boCeJ"
 const getCheckinStatus = (ticketID) => {
   return new Promise((resolve, reject) => {
       let currentStatus = false;
+      let checkinID = "";
       console.log("Getting checkin status for: " + ticketID);
       fetch(`https://checkin.tito.io/checkin_lists/chk_puX3JQxuM8vGK39xV0r2q5g/checkins/`, {
         method: 'GET',
@@ -23,12 +24,13 @@ const getCheckinStatus = (ticketID) => {
             if(checkin[i].ticket_id == ticketID){
               console.log("Checkin found for: " + ticketID);
               currentStatus = true;
+              checkinID = checkin[i].uuid;
               break;
             }
           }
         }
 
-        resolve(currentStatus);
+        resolve({checkedin: currentStatus, checkinuuid: checkinID});
       })
       .catch(err => {
         reject(err);
@@ -154,7 +156,8 @@ const getTickets = (ticketSlug) => {
                                       ticket_type: tick.release_title,
                                       uniName: tickAns[0],
                                       studyLevel: tickAns[1],
-                                      checkedIn: checkinStatus
+                                      checkedIn: checkinStatus.checkedin,
+                                      checkinUUID: checkinStatus.checkinuuid
                                     }
                                     resolve(ticket);
                                   })

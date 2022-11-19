@@ -83,6 +83,7 @@ export default function TicketPage({query}) {
                     setTicketSlug(data.slug);
                     setTicketID(data.id);
                     setIsCheckedIn(data.checkedIn);
+                    setCheckinUUID(data.checkinUUID);
                 }
             })
             .catch(err => {
