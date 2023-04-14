@@ -1,14 +1,12 @@
 // This very long api endpoint is used to get data for a ticketholder requested.
 // Format: /api/ticket/:ticketID
 
-const TITO_API_KEY = "secret_YT4DwacTQEHnQZ4boCeJ"
-
 const getCheckinStatus = (ticketID) => {
   return new Promise((resolve, reject) => {
       let currentStatus = false;
       let checkinID = "";
       console.log("Getting checkin status for: " + ticketID);
-      fetch(`https://checkin.tito.io/checkin_lists/chk_puX3JQxuM8vGK39xV0r2q5g/checkins/`, {
+      fetch(`https://checkin.tito.io/checkin_lists/${process.env.TITO_CHECKIN_LIST}/checkins/`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -41,12 +39,12 @@ const getCheckinStatus = (ticketID) => {
 
 const getAnswers = (ticketSlug, questionSlug) => {
   return new Promise((resolve, reject) => {
-    fetch(`https://api.tito.io/v3/bruneltech/hackbrunel-v2/questions/${questionSlug}/answers`, {
+    fetch(`https://api.tito.io/v3/${process.env.TITO_ACCOUNT_NAME}/${process.env.TITO_EVENT_SLUG}/questions/${questionSlug}/answers`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-        'Authorization': `Token token=${TITO_API_KEY}`,
+        'Authorization': `Token token=${process.env.TITO_API_KEY}`,
       }
     })
       .then(res => res.json())
@@ -59,12 +57,12 @@ const getAnswers = (ticketSlug, questionSlug) => {
 
             for (currentPage; currentPage <= data.meta.total_pages; currentPage++) {
               console.log("Page: " + currentPage);
-              fetch(`https://api.tito.io/v3/bruneltech/hackbrunel-v2/questions/${questionSlug}/answers?page=` + currentPage, {
+              fetch(`https://api.tito.io/v3/${process.env.TITO_ACCOUNT_NAME}/${process.env.TITO_EVENT_SLUG}/questions/${questionSlug}/answers?page=` + currentPage, {
                 method: 'GET',
                 headers: {
                   'Content-Type': 'application/json',
                   'Accept': 'application/json',
-                  'Authorization': 'Token token=' + TITO_API_KEY
+                  'Authorization': 'Token token=' + process.env.TITO_API_KEY
                 },
               })
                 .then(res => res.json())
@@ -103,12 +101,12 @@ const getTickets = (ticketSlug) => {
   let selTicket;
 
   return new Promise((resolve, reject) => {
-    fetch('https://api.tito.io/v3/bruneltech/hackbrunel-v2/tickets', {
+    fetch(`https://api.tito.io/v3/${process.env.TITO_ACCOUNT_NAME}/${process.env.TITO_EVENT_SLUG}/tickets`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-        'Authorization': 'Token token=' + TITO_API_KEY
+        'Authorization': 'Token token=' + process.env.TITO_API_KEY
       }
     })
       .then(res => res.json())
@@ -121,12 +119,12 @@ const getTickets = (ticketSlug) => {
 
             for (currentPage; currentPage <= data.meta.total_pages; currentPage++) {
               console.log("Page: " + currentPage);
-              fetch('https://api.tito.io/v3/bruneltech/hackbrunel-v2/tickets?search[states][]=complete&page=' + currentPage, {
+              fetch(`https://api.tito.io/v3/${process.env.TITO_ACCOUNT_NAME}/${process.env.TITO_EVENT_SLUG}/tickets?search[states][]=complete&page=` + currentPage, {
                 method: 'GET',
                 headers: {
                   'Content-Type': 'application/json',
                   'Accept': 'application/json',
-                  'Authorization': 'Token token=' + TITO_API_KEY
+                  'Authorization': 'Token token=' + process.env.TITO_API_KEY
                 },
               })
                 .then(res => res.json())

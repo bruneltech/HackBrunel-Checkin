@@ -1,5 +1,3 @@
-import Head from 'next/head'
-import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import {QrScanner} from '@yudiel/react-qr-scanner';
 
@@ -16,8 +14,14 @@ export default function Scan() {
     alert("Scan Failure: " + err);
   }
 
+  const style = {
+    backgroundColor: process.env.BACKGROUND_COLOUR || "#000000",
+    buttonColor: process.env.BUTTON_COLOUR,
+    buttonColorDisabled: process.env.BUTTON_COLOUR_DISABLED,
+  }
+
   return (
-    <div className={styles.container}>
+    <div className={styles.container} style={{backgroundColor: style.backgroundColor}}>
       <div className={styles.mainMenu}>
         <h2>Scan QR Code</h2>
 

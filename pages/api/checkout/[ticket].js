@@ -6,7 +6,7 @@ const checkOutPerson = (tUUID) => {
     return new Promise((resolve, reject) => {
         // Firstly going to check to see if there already is an existing checkin for this person.
 
-        fetch(`https://checkin.tito.io/checkin_lists/chk_puX3JQxuM8vGK39xV0r2q5g/checkins/${tUUID}`, {
+        fetch(`https://checkin.tito.io/checkin_lists/${process.env.TITO_CHECKIN_LIST}/checkins/${tUUID}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',

@@ -1,7 +1,4 @@
-import Head from 'next/head'
-import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import { useRouter } from 'next/router';
 import {useState, useEffect} from 'react';
 
 export default function TicketPage({query}) {
@@ -60,6 +57,12 @@ export default function TicketPage({query}) {
 
     }
 
+    const style = {
+        backgroundColor: process.env.BACKGROUND_COLOUR || "#000000",
+        buttonColor: process.env.BUTTON_COLOUR,
+        buttonColorDisabled: process.env.BUTTON_COLOUR_DISABLED,
+    }
+
     useEffect(() => {
         if (query.ticketID && debounce == false) {
             setDebounce(true);
@@ -99,7 +102,7 @@ export default function TicketPage({query}) {
 
 
     return(
-        <div className={styles.container}>
+        <div className={styles.container} style={{backgroundColor: style.backgroundColor}}>
             <div className={styles.mainMenu}>
                 <h2>Ticket Details</h2>
 
@@ -118,18 +121,18 @@ export default function TicketPage({query}) {
                         <p className={styles.tickDetail}>{ticketUniDetails.studyLevel}</p>
 
                         {isCheckedIn ? (
-                            <a onClick={deleteCheckIn} className={styles.chkBtn}>
+                            <a onClick={deleteCheckIn} className={styles.chkBtn} style={{backgroundColor: style.buttonColor}}>
                                 <p>Check Out</p>
                             </a>
                         ) : (
                             
-                            <a onClick={createCheckIn} className={styles.chkBtn}>
+                            <a onClick={createCheckIn} className={styles.chkBtn} style={{backgroundColor: style.buttonColor}}>
                                 <p>Check In</p>
                             </a>
                         )
                         }
 
-                        <a href={"/scan/"} className={styles.chkBtn}>
+                        <a href={"/scan/"} className={styles.chkBtn} style={{backgroundColor: style.buttonColor}}>
                             <p>Scan Another Ticket</p>
                         </a>
                         

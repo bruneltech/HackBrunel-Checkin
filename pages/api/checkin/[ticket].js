@@ -6,7 +6,7 @@ const checkinPerson = (tID) => {
     return new Promise((resolve, reject) => {
         // Firstly going to check to see if there already is an existing checkin for this person.
 
-        fetch(`https://checkin.tito.io/checkin_lists/chk_puX3JQxuM8vGK39xV0r2q5g/checkins/`, {
+        fetch(`https://checkin.tito.io/checkin_lists/${process.env.TITO_CHECKIN_LIST}/checkins/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -27,7 +27,7 @@ const checkinPerson = (tID) => {
                     if (currentStatus) {
                         resolve({error: "Already checked in."});
                     }else{
-                        fetch(`https://checkin.tito.io/checkin_lists/chk_puX3JQxuM8vGK39xV0r2q5g/checkins/`, {
+                        fetch(`https://checkin.tito.io/checkin_lists/${process.env.TITO_CHECKIN_LIST}/checkins/`, {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
