@@ -1,6 +1,6 @@
 # Hackbrunel Checkin
 
-The check-in / check-out tool that was used for HackBrunel V2, built upon the ti.to api.
+The check-in / check-out tool that was used for HackBrunel V2 (in-person), built upon the ti.to api.
 Designed to be easily accessible on mobile phones for staff and can be quickly hosted on a service like repl.it or Vercel. (Or your own hosting solution if you prefer.)
 
 ## Setup
