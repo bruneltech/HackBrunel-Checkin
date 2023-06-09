@@ -22,4 +22,4 @@ This tool is definitely deserving of a re-write, but it'll likely only come abou
 
 
 ## Important Info
-This tool comes with absolutely no warranty, and is provided as-is. If you find any bugs, please feel free to open an issue or a pull request. We trust you'll test if this is suitable for your event before using it in a live environment.
+This tool comes with absolutely no warranty, and is provided as-is. If you have any potential improvements, please do open a pull request. We trust you'll test if this is suitable for your event before using it in a live environment.
